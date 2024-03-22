@@ -32,16 +32,15 @@ def AddQueen(board, row):
             board[row][i] = 0
     return False
 
-def Statistique():
-    for i in range(20):
+def Statistic():
+    listOfStatistic = []
+    for i in range(numberOfBoard):
         start = time.time()
         AddQueen(board, 0)
         end = time.time()
-
-        for row in board:
-            print(row)
-        print("Temps de la fonction: ", end - start, "seconde")
-    return True
+        timeOfExecution = end - start
+        listOfStatistic.append(timeOfExecution)       
+    return listOfStatistic
 
     
 start = time.time()
@@ -51,3 +50,5 @@ end = time.time()
 for row in board:
     print(row)
 print("Temps de la fonction: ", end - start, "seconde")
+
+#print(Statistic()[1])
