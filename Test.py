@@ -46,9 +46,9 @@ def Statistic():
 
 def ReturnResult():
       
-    # start = time.time()
+    start = time.time()
     AddQueen(board, 0)
-    # end = time.time()
+    end = time.time()
 
     for row in board:
         print(row)
