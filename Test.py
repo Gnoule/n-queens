@@ -23,25 +23,25 @@ def Diagonal(board, row, colum):
             return False
     return True
 
-def AddQueen(board, row):
+def AddQueen(board, row, numberOfBoard):
     if row == numberOfBoard:
         return True
     for i in range(numberOfBoard):
         if(Column(board, row, i) == True and Diagonal(board, row, i) == True):
             board[row][i] = 1
-            if AddQueen(board, row + 1):
+            if AddQueen(board, row + 1, numberOfBoard):
                 return True
             board[row][i] = 0
     return False
 
 def AddRandomQueens(board):
-    return True
+    return board
 
 def Statistic():
     listOfStatistic = []
     for i in range(numberOfBoard):
         start = time.time()
-        AddQueen(board, 0)
+        AddQueen(board, 0, numberOfBoard)
         end = time.time()
         print(i)
         timeOfExecution = end - start
@@ -61,7 +61,7 @@ def ReturnResult():
     print("")
     
     start = time.time()
-    AddQueen(board, 0)
+    AddQueen(board, 0, numberOfBoard)
     end = time.time()
 
     for row in board:
