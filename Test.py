@@ -35,7 +35,7 @@ def AddQueen(board, row):
     return False
 
 def AddRandomQueens(board):
-    return board
+    return True
 
 def Statistic():
     listOfStatistic = []
@@ -50,10 +50,16 @@ def Statistic():
 
 def ReturnResult():
     
+    
+    for row in board:
+        print(row)
+    print("")
+    
     AddRandomQueens(board)
     for row in board:
         print(row)
     print("")
+    
     start = time.time()
     AddQueen(board, 0)
     end = time.time()
