@@ -1,8 +1,9 @@
 import time
+import random
 import matplotlib.pyplot as plt
 
 numberOfBoard = int(input("Choisir le nombre de case du tableau: "))
-
+numberOfQueen = int(input("Choisir le nombre de dame déja présente: "))
 
 board = [[0 for i in range(numberOfBoard)] for i in range(numberOfBoard)]
 
@@ -33,6 +34,9 @@ def AddQueen(board, row):
             board[row][i] = 0
     return False
 
+def AddRandomQueens(board):
+    return board
+
 def Statistic():
     listOfStatistic = []
     for i in range(numberOfBoard):
@@ -45,7 +49,11 @@ def Statistic():
     return listOfStatistic
 
 def ReturnResult():
-      
+    
+    AddRandomQueens(board)
+    for row in board:
+        print(row)
+    print("")
     start = time.time()
     AddQueen(board, 0)
     end = time.time()
