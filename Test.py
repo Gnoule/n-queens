@@ -1,4 +1,5 @@
 import time
+import matplotlib.pyplot as plt
 
 numberOfBoard = int(input("Choisir le nombre de case du tableau: "))
 
@@ -38,17 +39,22 @@ def Statistic():
         start = time.time()
         AddQueen(board, 0)
         end = time.time()
+        print(i)
         timeOfExecution = end - start
         listOfStatistic.append(timeOfExecution)       
     return listOfStatistic
 
+def ReturnResult():
+      
+    # start = time.time()
+    AddQueen(board, 0)
+    # end = time.time()
+
+    for row in board:
+        print(row)
+    print("Temps de la fonction: ", end - start, "seconde")
     
-start = time.time()
-AddQueen(board, 0)
-end = time.time()
+    plt.plot(range(1, numberOfBoard + 1), Statistic())
+    plt.show()
 
-for row in board:
-    print(row)
-print("Temps de la fonction: ", end - start, "seconde")
-
-#print(Statistic()[1])
+ReturnResult()
