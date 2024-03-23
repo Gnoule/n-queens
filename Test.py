@@ -6,7 +6,6 @@ numberOfBoard = int(input("Choisir le nombre de case du tableau: "))
 numberOfQueen = int(input("Choisir le nombre de dame déja présente: "))
 
 board = [[0 for i in range(numberOfBoard)] for i in range(numberOfBoard)]
-board[0][1] = 1
     
 def Column(board, row, column):
     for i in range(row, -1, -1):
@@ -55,10 +54,7 @@ def ReturnResult():
         print(row)
     print("")
     
-    AddRandomQueens(board)
-    for row in board:
-        print(row)
-    print("")
+    # AddRandomQueens(board)
     
     start = time.time()
     AddQueen(board, 0, numberOfBoard)
@@ -68,7 +64,7 @@ def ReturnResult():
         print(row)
     print("Temps de la fonction: ", end - start, "seconde")
     
-    # plt.plot(range(1, numberOfBoard + 1), Statistic())
-    # plt.show()
+    plt.plot(range(1, numberOfBoard + 1), Statistic())
+    plt.show()
 
 ReturnResult()
