@@ -50,17 +50,21 @@ def AddQueen(board, row, numberOfBoard):
     return False
 
 
-def AddRandomQueens(board):
+def AddRandomQueens(board, numberOfQueen):
     for i in range(numberOfQueen):
         randomRow = random.randint(0, numberOfBoard - 1)
-        randomBox = random.randint(0, numberOfBoard - 1)
+        randomColum = random.randint(0, numberOfBoard - 1)
         if(CheckRow(board, randomRow) == True):
-            if(CheckColumn(board, randomBox) == True and CheckDiagonal(board, randomRow, randomBox) == True):
-                    board[randomRow][randomBox] = 1
+            if(CheckColumn(board, randomColum) == True and CheckDiagonal(board, randomRow, randomColum) == True):
+                board[randomRow][randomColum] = 1
             else:
-                AddRandomQueens(board)
+                print(i)
+                numberOfQueenLeft = numberOfQueen - i
+                AddRandomQueens(board, numberOfQueenLeft)
         else:
-            AddRandomQueens(board)
+            print(i)
+            numberOfQueenLeft = numberOfQueen - i
+            AddRandomQueens(board, numberOfQueenLeft)
     return True
 
 def Statistic():
@@ -80,18 +84,18 @@ def ReturnResult():
         print(row)
     print("")
     
-    AddRandomQueens(board)
+    print(AddRandomQueens(board, numberOfQueen))
     for row in board:
         print(row)
     print("")
     
-    start = time.time()
-    print(AddQueen(board, 0, numberOfBoard))
-    end = time.time()
+    # start = time.time()
+    # print(AddQueen(board, 0, numberOfBoard))
+    # end = time.time()
 
-    for row in board:
-        print(row)
-    print("Temps de la fonction: ", end - start, "seconde")
+    # for row in board:
+    #     print(row)
+    # print("Temps de la fonction: ", end - start, "seconde")
     
     # plt.plot(range(1, numberOfBoard + 1), Statistic())
     # plt.show()
