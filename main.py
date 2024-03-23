@@ -11,10 +11,10 @@ if numberOfBoard < 4:
 #     numberOfQueen = int(input("Choisir un nombre inférieur à {}: ".format(numberOfBoard)))
 
 board = [[0 for i in range(numberOfBoard)] for i in range(numberOfBoard)]
-board[2][2] = 1
+board[2][4] = 1
 
-def CheckColumn(board, row, column):
-    for i in range(row, -1, -1):
+def CheckColumn(board, column):
+    for i in range(numberOfBoard):
         if board[i][column] == 1:
             return False
     return True
@@ -37,17 +37,16 @@ def CheckDiagonal(board, row, colum):
 def AddQueen(board, row, numberOfBoard):
     if row == numberOfBoard:
         return True
-    for i in range(numberOfBoard):
+    for i in range(numberOfBoard):     
         if(CheckRow(board, row) == True):
-            if(CheckColumn(board, row, i) == True and CheckDiagonal(board, row, i) == True):
+            if(CheckColumn(board, i) == True and CheckDiagonal(board, row, i) == True):
                 board[row][i] = 1
                 if AddQueen(board, row + 1, numberOfBoard):
                     return True          
                 board[row][i] = 0
         else:
-            if (AddQueen(board, row + 1, numberOfBoard)):
+            if(AddQueen(board, row + 1, numberOfBoard)):
                 return True
-            board[row][i] = 0
     return False
 
 
