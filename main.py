@@ -11,7 +11,7 @@ if numberOfBoard < 4:
 #     numberOfQueen = int(input("Choisir un nombre inférieur à {}: ".format(numberOfBoard)))
 
 board = [[0 for i in range(numberOfBoard)] for i in range(numberOfBoard)]
-board[1][2] = 1
+board[2][2] = 1
 
 def CheckColumn(board, row, column):
     for i in range(row, -1, -1):
@@ -45,8 +45,11 @@ def AddQueen(board, row, numberOfBoard):
                     return True          
                 board[row][i] = 0
         else:
-            AddQueen(board, row + 1, numberOfBoard)
+            if (AddQueen(board, row + 1, numberOfBoard)):
+                return True
+            board[row][i] = 0
     return False
+
 
 def AddRandomQueens(board):
     for i in range(numberOfQueen):
@@ -82,7 +85,7 @@ def ReturnResult():
     # print("")
     
     start = time.time()
-    AddQueen(board, 0, numberOfBoard)
+    print(AddQueen(board, 0, numberOfBoard))
     end = time.time()
 
     for row in board:
