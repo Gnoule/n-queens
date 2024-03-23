@@ -6,17 +6,17 @@ numberOfBoard = int(input("Choisir le nombre de case du tableau: "))
 # numberOfQueen = int(input("Choisir le nombre de dame déja présente: "))
 
 board = [[0 for i in range(numberOfBoard)] for i in range(numberOfBoard)]
-board[0][1] = 1
-    
+board[0][3] = 1
+
 def CheckColumn(board, row, column):
     for i in range(row, -1, -1):
         if board[i][column] == 1:
             return False
     return True
 
-def CheckRow(board, row):
-    for i in range(row):
-        if board[row][i] == 1:
+def CheckRow(board, actualRow):
+    for i in range(numberOfBoard):
+        if board[actualRow][i] == 1:
             return False
     return True
 
@@ -33,12 +33,14 @@ def AddQueen(board, row, numberOfBoard):
     if row == numberOfBoard:
         return True
     for i in range(numberOfBoard):
-        if(CheckColumn(board, row, i) == True and CheckDiagonal(board, row, i) == True and CheckRow(board, row) == True):
+        if(CheckRow(board, row) == True and CheckColumn(board, row, i) == True and CheckDiagonal(board, row, i) == True):
             board[row][i] = 1
-            # print("Add Queen all condition is true")
-            if AddQueen(board, row + 1, numberOfBoard):
-                return True
-            board[row][i] = 0
+        # if(CheckRow(board, row) == True and CheckDiagonal(board, row, i) == True and CheckColumn(board, row, i) == True):
+        #     board[row][i] = 1
+            # if AddQueen(board, row + 1, numberOfBoard):
+            #     return True
+            # board[row][i] = 0
+    AddQueen(board, row + 1, numberOfBoard)
     return False
 
 def AddRandomQueens(board):
