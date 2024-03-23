@@ -3,6 +3,8 @@ import random
 import matplotlib.pyplot as plt
 
 numberOfBoard = int(input("Choisir le nombre de case du tableau: "))
+if numberOfBoard < 4:
+    numberOfBoard = int(input("Choisir un nombre suppérieur à 3: "))
 
 board = [[0 for i in range(numberOfBoard)] for i in range(numberOfBoard)]
 

@@ -3,10 +3,12 @@ import random
 import matplotlib.pyplot as plt
 
 numberOfBoard = int(input("Choisir le nombre de case du tableau: "))
+if numberOfBoard < 4:
+    numberOfBoard = int(input("Choisir un nombre suppérieur à 3: "))
 # numberOfQueen = int(input("Choisir le nombre de dame déja présente: "))
 
 board = [[0 for i in range(numberOfBoard)] for i in range(numberOfBoard)]
-# board[0][3] = 1
+board[0][3] = 1
 
 def CheckColumn(board, row, column):
     for i in range(row, -1, -1):
@@ -30,17 +32,17 @@ def CheckDiagonal(board, row, colum):
     return True
 
 def AddQueen(board, row, numberOfBoard):
-    print("ok")
     if row == numberOfBoard:
         return True
     for i in range(numberOfBoard):
-        if(CheckRow(board, row) == True and CheckColumn(board, row, i) == True and CheckDiagonal(board, row, i) == True):
-            board[row][i] = 1
-            if AddQueen(board, row + 1, numberOfBoard):
-                return True
-            print("erreur")            
-            board[row][i] = 0
-    # AddQueen(board, row + 1, numberOfBoard)
+        if(CheckRow(board, row) == True):
+            if(CheckColumn(board, row, i) == True and CheckDiagonal(board, row, i) == True):
+                board[row][i] = 1
+                if AddQueen(board, row + 1, numberOfBoard):
+                    return True          
+                board[row][i] = 0
+        else:
+            AddQueen(board, row + 1, numberOfBoard)
     return False
 
 def AddRandomQueens(board):
