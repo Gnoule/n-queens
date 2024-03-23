@@ -6,11 +6,12 @@ numberOfBoard = int(input("Choisir le nombre de case du tableau: "))
 if numberOfBoard < 4:
     numberOfBoard = int(input("Choisir un nombre suppérieur à 3: "))
     
-numberOfQueen = int(input("Choisir le nombre de dame déja présente: "))
+# numberOfQueen = int(input("Choisir le nombre de dame déja présente: "))
 # if numberOfQueen > numberOfBoard:
-#     numberOfQueen = int(input("Choisir un nombre inférieur à ", numberOfBoard, ": "))
+#     numberOfQueen = int(input("Choisir un nombre inférieur à {}: ".format(numberOfBoard)))
 
 board = [[0 for i in range(numberOfBoard)] for i in range(numberOfBoard)]
+board[1][2] = 1
 
 def CheckColumn(board, row, column):
     for i in range(row, -1, -1):
@@ -48,6 +49,14 @@ def AddQueen(board, row, numberOfBoard):
     return False
 
 def AddRandomQueens(board):
+    for i in range(numberOfQueen):
+        randomRow = random.randint(0, numberOfBoard - 1)
+        randomBox = random.randint(0, numberOfBoard - 1)
+        if(CheckRow(board, randomRow) == True):
+            if(CheckColumn(board, randomRow, randomBox) == True and CheckDiagonal(board, randomRow, randomBox) == True):
+                    board[randomRow][randomBox] = 1
+        else:
+            AddRandomQueens(board)
     return True
 
 def Statistic():
@@ -62,8 +71,7 @@ def Statistic():
     return listOfStatistic
 
 def ReturnResult():
-    
-    
+       
     for row in board:
         print(row)
     print("")
@@ -74,7 +82,7 @@ def ReturnResult():
     # print("")
     
     start = time.time()
-    print(AddQueen(board, 0, numberOfBoard))
+    AddQueen(board, 0, numberOfBoard)
     end = time.time()
 
     for row in board:
