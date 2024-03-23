@@ -5,10 +5,12 @@ import matplotlib.pyplot as plt
 numberOfBoard = int(input("Choisir le nombre de case du tableau: "))
 if numberOfBoard < 4:
     numberOfBoard = int(input("Choisir un nombre suppérieur à 3: "))
-# numberOfQueen = int(input("Choisir le nombre de dame déja présente: "))
+    
+numberOfQueen = int(input("Choisir le nombre de dame déja présente: "))
+# if numberOfQueen > numberOfBoard:
+#     numberOfQueen = int(input("Choisir un nombre inférieur à ", numberOfBoard, ": "))
 
 board = [[0 for i in range(numberOfBoard)] for i in range(numberOfBoard)]
-board[0][3] = 1
 
 def CheckColumn(board, row, column):
     for i in range(row, -1, -1):
@@ -46,7 +48,7 @@ def AddQueen(board, row, numberOfBoard):
     return False
 
 def AddRandomQueens(board):
-    return board
+    return True
 
 def Statistic():
     listOfStatistic = []
@@ -54,7 +56,7 @@ def Statistic():
         start = time.time()
         AddQueen(board, 0, numberOfBoard)
         end = time.time()
-        # print(i)
+        print(i)
         timeOfExecution = end - start
         listOfStatistic.append(timeOfExecution)       
     return listOfStatistic
@@ -67,6 +69,9 @@ def ReturnResult():
     print("")
     
     # AddRandomQueens(board)
+    # for row in board:
+    #     print(row)
+    # print("")
     
     start = time.time()
     print(AddQueen(board, 0, numberOfBoard))
