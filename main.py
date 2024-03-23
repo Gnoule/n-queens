@@ -6,12 +6,12 @@ numberOfBoard = int(input("Choisir le nombre de case du tableau: "))
 if numberOfBoard < 4:
     numberOfBoard = int(input("Choisir un nombre suppérieur à 3: "))
     
-# numberOfQueen = int(input("Choisir le nombre de dame déja présente: "))
-# if numberOfQueen > numberOfBoard:
-#     numberOfQueen = int(input("Choisir un nombre inférieur à {}: ".format(numberOfBoard)))
+numberOfQueen = int(input("Choisir le nombre de dame déja présente: "))
+if numberOfQueen > numberOfBoard:
+    numberOfQueen = int(input("Choisir un nombre inférieur à {}: ".format(numberOfBoard)))
 
 board = [[0 for i in range(numberOfBoard)] for i in range(numberOfBoard)]
-board[2][4] = 1
+# board[2][4] = 1
 
 def CheckColumn(board, column):
     for i in range(numberOfBoard):
@@ -37,7 +37,7 @@ def CheckDiagonal(board, row, colum):
 def AddQueen(board, row, numberOfBoard):
     if row == numberOfBoard:
         return True
-    for i in range(numberOfBoard):     
+    for i in range(numberOfBoard):
         if(CheckRow(board, row) == True):
             if(CheckColumn(board, i) == True and CheckDiagonal(board, row, i) == True):
                 board[row][i] = 1
@@ -55,8 +55,10 @@ def AddRandomQueens(board):
         randomRow = random.randint(0, numberOfBoard - 1)
         randomBox = random.randint(0, numberOfBoard - 1)
         if(CheckRow(board, randomRow) == True):
-            if(CheckColumn(board, randomRow, randomBox) == True and CheckDiagonal(board, randomRow, randomBox) == True):
+            if(CheckColumn(board, randomBox) == True and CheckDiagonal(board, randomRow, randomBox) == True):
                     board[randomRow][randomBox] = 1
+            else:
+                AddRandomQueens(board)
         else:
             AddRandomQueens(board)
     return True
@@ -78,10 +80,10 @@ def ReturnResult():
         print(row)
     print("")
     
-    # AddRandomQueens(board)
-    # for row in board:
-    #     print(row)
-    # print("")
+    AddRandomQueens(board)
+    for row in board:
+        print(row)
+    print("")
     
     start = time.time()
     print(AddQueen(board, 0, numberOfBoard))
