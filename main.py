@@ -2,7 +2,7 @@ import time
 import random
 import matplotlib.pyplot as plt
 
-numberOfBoard = int(input("Choisir le nombre de case du tableau: "))
+numberOfBoard = int(input("Choisir le nombre de colonne du tableau: "))
 if numberOfBoard < 4:
     numberOfBoard = int(input("Choisir un nombre suppérieur à 3: "))
     
@@ -64,7 +64,6 @@ def AddQueen(board, row, numberOfBoard):
 
 
 def AddRandomQueens(board, numberOfQueen):
-    print(numberOfQueen)
     for i in range(numberOfQueen):
         randomRow = random.randint(0, numberOfBoard - 1)
         randomColum = random.randint(0, numberOfBoard - 1)
@@ -79,16 +78,18 @@ def AddRandomQueens(board, numberOfQueen):
             AddRandomQueens(board, numberOfQueenLeft)
     return True
 
-def Statistic():
+def Statistic(numberOfQueen):
     listOfStatistic = []
-    for i in range(numberOfBoard):
+    for i in range(numberOfQueen):
+        board = [[0 for i in range(numberOfBoard)] for i in range(numberOfBoard)]
+        AddRandomQueens(board, numberOfQueen)
         start = time.time()
         AddQueen(board, 0, numberOfBoard)
         end = time.time()
-        print(i)
         timeOfExecution = end - start
-        listOfStatistic.append(timeOfExecution)       
-    return listOfStatistic
+        listOfStatistic.append(timeOfExecution)
+    averageTime = sum(listOfStatistic) / len(listOfStatistic)
+    return listOfStatistic, averageTime
 
 def ReturnResult():
        
@@ -103,17 +104,26 @@ def ReturnResult():
     
     start = time.time()
     print(AddQueen(board, 0, numberOfBoard))
+    end = time.time()
     if AddQueen(board, 0, numberOfBoard) == True:
         print ("Solution trouvé : ")
+        
+        statisticResult, averageTime = Statistic(numberOfQueen)
+    
+        plt.plot(statisticResult)
+        plt.axhline(y=averageTime, color='r', linestyle='--', label='Moyenne')
+        plt.legend()
+        plt.xlabel('Bleu')
+        plt.ylabel('Temps d\'exécution (s)')
+        plt.title('Temps d\'exécution de la fonction AddQueen')
+        plt.show()
     else:
         print ("Pas de solution trouvé")
-    end = time.time()
 
     for row in board:
         print(row)
     print("Temps de la fonction: ", end - start, "seconde")
+
     
-    # plt.plot(range(1, numberOfBoard + 1), Statistic())
-    # plt.show()
 
 ReturnResult()
