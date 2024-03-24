@@ -64,6 +64,7 @@ def AddQueen(board, row, numberOfBoard):
 
 
 def AddRandomQueens(board, numberOfQueen):
+    print(numberOfQueen)
     for i in range(numberOfQueen):
         randomRow = random.randint(0, numberOfBoard - 1)
         randomColum = random.randint(0, numberOfBoard - 1)
@@ -71,11 +72,9 @@ def AddRandomQueens(board, numberOfQueen):
             if(CheckColumn(board, randomColum) == True and CheckDiagonal(board, randomRow, randomColum) == True):
                 board[randomRow][randomColum] = 1
             else:
-                print(i)
                 numberOfQueenLeft = numberOfQueen - i
                 AddRandomQueens(board, numberOfQueenLeft)
         else:
-            print(i)
             numberOfQueenLeft = numberOfQueen - i
             AddRandomQueens(board, numberOfQueenLeft)
     return True
@@ -97,10 +96,10 @@ def ReturnResult():
         print(row)
     print("")
     
-    # print(AddRandomQueens(board, numberOfQueen))
-    # for row in board:
-    #     print(row)
-    # print("")
+    print(AddRandomQueens(board, numberOfQueen))
+    for row in board:
+        print(row)
+    print("")
     
     start = time.time()
     print(AddQueen(board, 0, numberOfBoard))
