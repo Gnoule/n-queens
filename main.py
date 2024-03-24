@@ -11,7 +11,7 @@ if numberOfQueen > numberOfBoard:
     numberOfQueen = int(input("Choisir un nombre inférieur à {}: ".format(numberOfBoard)))
 
 board = [[0 for i in range(numberOfBoard)] for i in range(numberOfBoard)]
-# board[2][4] = 1
+board[2][3] = 1
 
 def CheckColumn(board, column):
     for i in range(numberOfBoard):
@@ -25,13 +25,32 @@ def CheckRow(board, actualRow):
             return False
     return True
 
+# def CheckDiagonal(board, row, colum):
+#     for i, j in zip(range(row, -1, -1), range(colum, -1, -1)):
+#         if board[i][j] == 1:
+#             return False
+#     for i, j in zip(range(row, -1, -1), range(colum, numberOfBoard)):
+#         if board[i][j] == 1:
+#             return False
+#     return True
+
 def CheckDiagonal(board, row, colum):
+    
     for i, j in zip(range(row, -1, -1), range(colum, -1, -1)):
         if board[i][j] == 1:
             return False
-    for i, j in zip(range(row, -1, -1), range(colum, numberOfBoard)):
+
+    for i, j in zip(range(row+1, numberOfBoard), range(colum+1, numberOfBoard)):
         if board[i][j] == 1:
             return False
+
+    for i, j in zip(range(row, -1, -1), range(colum+1, numberOfBoard)):
+        if board[i][j] == 1:
+            return False
+
+    for i, j in zip(range(row, -1, -1), range(colum, numberOfBoard)):
+         if board[i][j] == 1:
+             return False
     return True
 
 def AddQueen(board, row, numberOfBoard):
@@ -84,18 +103,18 @@ def ReturnResult():
         print(row)
     print("")
     
-    print(AddRandomQueens(board, numberOfQueen))
-    for row in board:
-        print(row)
-    print("")
-    
-    # start = time.time()
-    # print(AddQueen(board, 0, numberOfBoard))
-    # end = time.time()
-
+    # print(AddRandomQueens(board, numberOfQueen))
     # for row in board:
     #     print(row)
-    # print("Temps de la fonction: ", end - start, "seconde")
+    # print("")
+    
+    start = time.time()
+    print(AddQueen(board, 0, numberOfBoard))
+    end = time.time()
+
+    for row in board:
+        print(row)
+    print("Temps de la fonction: ", end - start, "seconde")
     
     # plt.plot(range(1, numberOfBoard + 1), Statistic())
     # plt.show()
