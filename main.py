@@ -11,11 +11,12 @@ if numberOfQueen > numberOfBoard:
     numberOfQueen = int(input("Choisir un nombre inférieur à {}: ".format(numberOfBoard)))
 
 board = [[0 for i in range(numberOfBoard)] for i in range(numberOfBoard)]
-board[2][3] = 1
+# board[0][4] = 1
+# board[2][0] = 1
 
-def CheckColumn(board, column):
+def CheckColumn(board, colum):
     for i in range(numberOfBoard):
-        if board[i][column] == 1:
+        if board[i][colum] == 1:
             return False
     return True
 
@@ -24,15 +25,6 @@ def CheckRow(board, actualRow):
         if board[actualRow][i] == 1:
             return False
     return True
-
-# def CheckDiagonal(board, row, colum):
-#     for i, j in zip(range(row, -1, -1), range(colum, -1, -1)):
-#         if board[i][j] == 1:
-#             return False
-#     for i, j in zip(range(row, -1, -1), range(colum, numberOfBoard)):
-#         if board[i][j] == 1:
-#             return False
-#     return True
 
 def CheckDiagonal(board, row, colum):
     
@@ -43,15 +35,17 @@ def CheckDiagonal(board, row, colum):
     for i, j in zip(range(row+1, numberOfBoard), range(colum+1, numberOfBoard)):
         if board[i][j] == 1:
             return False
-
-    for i, j in zip(range(row, -1, -1), range(colum+1, numberOfBoard)):
+        
+    for i, j in zip(range(row, numberOfBoard), range(colum, -1, -1)):
         if board[i][j] == 1:
             return False
 
     for i, j in zip(range(row, -1, -1), range(colum, numberOfBoard)):
          if board[i][j] == 1:
              return False
+         
     return True
+
 
 def AddQueen(board, row, numberOfBoard):
     if row == numberOfBoard:
@@ -110,6 +104,10 @@ def ReturnResult():
     
     start = time.time()
     print(AddQueen(board, 0, numberOfBoard))
+    if AddQueen(board, 0, numberOfBoard) == True:
+        print ("Solution trouvé : ")
+    else:
+        print ("Pas de solution trouvé")
     end = time.time()
 
     for row in board:
