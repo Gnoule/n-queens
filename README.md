@@ -16,44 +16,6 @@ This project implements a solution to the classic N-Queens problem using a backt
 3. Run the `n_queens.py` file.
 4. Follow the prompts to choose the number of columns and the number of queens already present on the board.
 
-## Usage Example
-
-```python
-python n_queens.py
-
-Choisir le nombre de colonne du tableau: 8
-Choisir le nombre de dame déja présente: 3
-
-[0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0]
-
-[0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 1]
-[0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 1, 0, 0]
-[0, 0, 1, 0, 0, 0, 0, 0]
-
-True
-Solution trouvé :
-
-[1, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 1, 0]
-[0, 0, 0, 0, 1, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 1]
-[0, 1, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 1, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 1, 0, 0]
-[0, 0, 1, 0, 0, 0, 0, 0]
-
 # Projet N-Reines avec Ajout de Dames Aléatoires
 
 Ce projet implémente une solution au problème classique des N-Reines en utilisant une approche de backtracking, avec la possibilité d'ajouter un certain nombre de dames de manière aléatoire sur le plateau avant de trouver la solution. Le but est de placer N reines sur un échiquier de manière à ce qu'aucune reine ne puisse attaquer une autre.
