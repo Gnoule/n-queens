@@ -12,7 +12,7 @@ numberOfQueen = int(input("Choisir le nombre de dame déja présente: "))
 if numberOfQueen > numberOfBoard:
     numberOfQueen = int(input("Choisir un nombre inférieur à {}: ".format(numberOfBoard)))
 
-# We create the work tray
+# We create the board
 board = [[0 for i in range(numberOfBoard)] for i in range(numberOfBoard)]
 
 # We will create the verification function in column
@@ -110,37 +110,57 @@ def AddRandomQueens(board, numberOfQueen):
 
 # We will now create a function for statistics
 def Statistic(numberOfQueen):
+    # We create a list to store the various stats
     listOfStatistic = []
+    # We execute the function for a number of times equal to the number of columns.
     for i in range(numberOfBoard):
+        # We create the board
         board = [[0 for i in range(numberOfBoard)] for i in range(numberOfBoard)]
+        # Call the function for randomly adding queens
         AddRandomQueens(board, numberOfQueen)
+        # We launch a timer
         start = time.time()
+        # Call the function to place the queens
         AddQueen(board, 0, numberOfBoard)
+        # Stop the timer
         end = time.time()
+        # Recover the function execution time
         timeOfExecution = end - start
+        # We add it to the list
         listOfStatistic.append(timeOfExecution)
+    # Once all the executions have been completed, the average time is calculated.
     averageTime = sum(listOfStatistic) / len(listOfStatistic)
+    # We return the list and the average time
     return listOfStatistic, averageTime
 
+# We create the function for displaying and calling functions
 def ReturnResult():
-       
+    
+    # The empty board is displayed
     for row in board:
         print(row)
     print("")
     
+    # Randomly add queens and display them
     print(AddRandomQueens(board, numberOfQueen))
     for row in board:
         print(row)
     print("")
     
+    # We launch a timer
     start = time.time()
+    # Call the function to place the queens
     print(AddQueen(board, 0, numberOfBoard))
+    # Stop the timer
     end = time.time()
+    # We check whether the execution has found a solution
     if AddQueen(board, 0, numberOfBoard) == True:
         print ("Solution trouvé : ")
         
+        # We call the statistc function and retrieve the retrouner values.
         statisticResult, averageTime = Statistic(numberOfQueen)
-    
+
+        # Statistics are displayed
         plt.plot(statisticResult)
         plt.axhline(y=averageTime, color='r', linestyle='--', label='Moyenne')
         plt.legend()
@@ -148,13 +168,15 @@ def ReturnResult():
         plt.ylabel('Temps d\'exécution (s)')
         plt.title('Temps d\'exécution de la fonction AddQueen')
         plt.show()
+    # If not, we indicate that no solution has been found.
     else:
         print ("Pas de solution trouvé")
 
+    # The completed board is displayed
     for row in board:
         print(row)
     print("Temps de la fonction: ", end - start, "seconde")
 
     
-
+# Call the function that returns the results
 ReturnResult()
