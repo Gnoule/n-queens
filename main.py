@@ -2,30 +2,34 @@ import time
 import random
 import matplotlib.pyplot as plt
 
+# The user is asked to select the number of columns in the table
 numberOfBoard = int(input("Choisir le nombre de colonne du tableau: "))
 if numberOfBoard < 4:
     numberOfBoard = int(input("Choisir un nombre suppérieur à 3: "))
-    
+
+# The user is asked to choose the number of checkers to be randomly placed. 
 numberOfQueen = int(input("Choisir le nombre de dame déja présente: "))
 if numberOfQueen > numberOfBoard:
     numberOfQueen = int(input("Choisir un nombre inférieur à {}: ".format(numberOfBoard)))
 
+# We create the work tray
 board = [[0 for i in range(numberOfBoard)] for i in range(numberOfBoard)]
-# board[0][4] = 1
-# board[2][0] = 1
 
+# We will create the verification function in column
 def CheckColumn(board, colum):
     for i in range(numberOfBoard):
         if board[i][colum] == 1:
             return False
     return True
 
+# We will create the verification function in line
 def CheckRow(board, actualRow):
     for i in range(numberOfBoard):
         if board[actualRow][i] == 1:
             return False
     return True
 
+# We will create the diagonal verification function
 def CheckDiagonal(board, row, colum):
     
     for i, j in zip(range(row, -1, -1), range(colum, -1, -1)):
