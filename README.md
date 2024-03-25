@@ -1,4 +1,4 @@
-# Projet N-Reines avec Ajout de Dames Aléatoires
+# Projet N-Reines avec Ajout de Reine Aléatoires
 
 Ce projet implémente une solution au problème classique des N-Reines en utilisant une approche de backtracking, avec la possibilité d'ajouter un certain nombre de dames de manière aléatoire sur le plateau avant de trouver la solution. Le but est de placer N reines sur un échiquier de manière à ce qu'aucune reine ne puisse attaquer une autre.
 
